@@ -15,7 +15,7 @@ $ uvicorn app.main:app --reload
 - dependency
 - CRUD
 
-# create table
+## create table
 $ python
 ```
 >>> from app.db.session import Engine
@@ -24,5 +24,5 @@ $ python
 >>> quit()
 ```
 
-# swagger ui on localhost
+## swagger ui on localhost
 Swagger UI: http://127.0.0.1:8000/docs

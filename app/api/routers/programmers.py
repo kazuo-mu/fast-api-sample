@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Path
 from app.api.schemas import (
   ProgrammerListItem, ProgrammerDetail
 )
@@ -20,7 +20,9 @@ def list_programmers(
   "/{name}",
   response_model=ProgrammerDetail,
 )
-def detail_programmer(name: str):
+def detail_programmer(
+  name: str = Path(max_length=100),
+):
   return ProgrammerDetail(
     name="susumuis",
     languages=["Python", "Java", "JavaScript"],

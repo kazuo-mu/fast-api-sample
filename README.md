@@ -20,3 +20,6 @@ $python
 >> from app.db.models import Base
 >> Base.metadata.create_all(bind=Engine)
 >> quit()
+
+# swagger ui on localhost
+Swagger UI: http://127.0.0.1:8000/docs

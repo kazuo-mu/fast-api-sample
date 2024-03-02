@@ -1,7 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from app.api.schemas import (
   ProgrammerListItem, ProgrammerDetail
 )
+from app.api.dependencies import get_db
+from app.api import cruds
 
 router = APIRouter()
 
@@ -9,11 +11,10 @@ router = APIRouter()
   "/",
   response_model=list[ProgrammerListItem]
 )
-def list_programmers():
-  return [
-    ProgrammerListItem(name="susumuis"),
-    ProgrammerListItem(name="altnight")
-  ]
+def list_programmers(
+  db=Depends(get_db)
+):
+  return cruds.get_programmers(db)
 
 @router.get(
   "/{name}",
@@ -27,7 +28,11 @@ def detail_programmer(name: str):
   )
 
 @router.post("/")
-def add_programmer(programmer: ProgrammerDetail):
+def add_programmer(
+  programmer: ProgrammerDetail,
+  db=Depends(get_db),
+):
+  cruds.add_programmer(db, programmer)
   return {"result": "OK"}
 
 @router.put("/{name}")

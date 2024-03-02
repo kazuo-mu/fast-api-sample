@@ -1,7 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from app.api.schemas import ProgrammerDetail
-from app.db.models import Programmer, ProgrammerDetail
+from app.db.models import Programmer, ProgrammerLanguage
 
 def get_programmers(
   db: Session
